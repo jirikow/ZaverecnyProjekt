@@ -1,6 +1,8 @@
 from spravaPojistenych import SpravaPojistenych
+from validace import Validace
 
 pojisteni = SpravaPojistenych()
+
 volba = None
 while volba != "4":
     print(""" 
@@ -23,9 +25,9 @@ EVIDENCE POJIŠTĚNÝCH
             jmeno = input("Zadejte křestní jméno: ").strip().capitalize()
         while not prijmeni:
             prijmeni = input("Zadejte příjmeni: ").strip().capitalize()
-        while not telefon:
+        while not Validace.jeTelefon(telefon):
             telefon = input("Zadejte telefoní číslo: ").strip()
-        while not vek:
+        while not Validace.jeVek(vek):
             vek = input("Zadejte věk: ")
 
         pojisteni.pridat(jmeno, prijmeni, telefon, vek)
@@ -40,7 +42,7 @@ EVIDENCE POJIŠTĚNÝCH
             print(vypis)
 
     elif volba == "3":
-        hledany_vyraz = input("Zadejte jméno nebo příjmení k vyhledání pojištěného: \n").capitalize()
+        hledany_vyraz = input("Zadejte jméno nebo příjmení k vyhledání pojištěného: \n").strip().capitalize()
         nalezeno = pojisteni.vyhledat(hledany_vyraz)
         if not nalezeno:
             print("Nic nenalezeno")

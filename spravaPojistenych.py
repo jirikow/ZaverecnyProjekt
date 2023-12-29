@@ -1,4 +1,5 @@
 from pojisteny import Pojisteny
+
 class SpravaPojistenych:
     def __init__(self):
         self.seznamPojistenych = list()
